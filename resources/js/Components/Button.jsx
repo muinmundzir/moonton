@@ -7,9 +7,11 @@ export default function Button({
     variant = "primary",
     processing,
     children,
+    onClick,
 }) {
     return (
         <button
+            onClick={onClick}
             type={type}
             className={`rounded-2xl py-[13px] text-center w-full ${
                 processing && "opacity-30"
@@ -32,5 +34,6 @@ Button.propTypes = {
         "white-outline",
     ]),
     processing: PropTypes.bool,
+    onClick: PropTypes.func,
     children: PropTypes.node,
 };
