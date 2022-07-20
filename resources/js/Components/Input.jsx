@@ -42,6 +42,7 @@ export default function Input({
         </div>
     );
 }
+
 Input.propTypes = {
     type: PropTypes.oneOf(["text", "email", "password", "number", "file"]),
     name: PropTypes.string,
