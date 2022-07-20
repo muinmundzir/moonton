@@ -1,8 +1,15 @@
 import React from "react";
 
-export default function Checkbox({ name, value, handleChange, className }) {
+export default function Checkbox({
+    name,
+    value,
+    handleChange,
+    className,
+    isChecked = false,
+}) {
     return (
         <input
+            defaultChecked={isChecked}
             type="checkbox"
             name={name}
             value={value}

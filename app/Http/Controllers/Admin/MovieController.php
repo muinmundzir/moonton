@@ -19,7 +19,8 @@ class MovieController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Movie/Index');
+        $movies = Movie::all();
+        return Inertia::render('Admin/Movie/Index', ['movies' => $movies]);
     }
 
     /**
@@ -70,7 +71,7 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        //
+        return Inertia::render('Admin/Movie/Edit', ['movie' => $movie]);
     }
 
     /**
@@ -82,7 +83,20 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        //
+        $data = $request->validated();
+        if ($request->file('thumbnail')) {
+            $data['thumbnail'] = Storage::disk('public')->put('movies', $request->file('thumbnail'));
+            Storage::disk('public')->delete($movie->thumbnail);
+        } else {
+            $data['thumbnail'] = $movie->thumbnail;
+        }
+
+        $movie->update($data);
+
+        return redirect(route('admin.dashboard.movie.index'))->with([
+            'message' => 'Movie updated succesfully',
+            'type' => 'success',
+        ]);
     }
 
     /**
