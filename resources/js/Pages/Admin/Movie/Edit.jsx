@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Inertia } from "@inertiajs/inertia";
 import { Head, useForm } from "@inertiajs/inertia-react";
 import ValidationErrors from "@/Components/ValidationErrors";
 
@@ -114,7 +115,7 @@ const Edit = ({ auth, movie }) => {
                             setData("is_featured", e.target.checked)
                         }
                         className="mt-1"
-                        checked={movie.is_featured}
+                        isChecked={movie.is_featured}
                     />
                 </div>
                 <Button type="submit" processing={processing}>

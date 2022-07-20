@@ -7,6 +7,7 @@ use App\Models\Movie;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Requests\Admin\Movie\Store as StoreRequest;
+use App\Http\Requests\Admin\Movie\Update;
 use Illuminate\Support\Facades\Storage;
 use Str;
 
@@ -81,7 +82,7 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Update $request, Movie $movie)
     {
         $data = $request->validated();
         if ($request->file('thumbnail')) {
